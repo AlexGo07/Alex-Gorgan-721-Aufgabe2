@@ -141,4 +141,19 @@ public class Controller {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Filters clients by director (regizor).
+     *
+     * @param region to filter by
+     * @return a list of clients who have Produktes from ther region
+     */
+
+    public List<Charaktere> getCharakterenMitProdukteVonRegion(String region) {
+        return CharaktereRepository.readAll().stream()
+                .filter(k -> k.getAusgelieheneProduktee().stream()
+                        .anyMatch(f -> f.getHerkunftregion().equalsIgnoreCase(region)))
+                .collect(Collectors.toList());
+    }
+
+
 }
