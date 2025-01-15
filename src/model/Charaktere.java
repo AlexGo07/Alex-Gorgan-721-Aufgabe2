@@ -7,13 +7,14 @@ import java.util.List;
 public class Charaktere implements HasID{
     private Integer CharaktereID;
     private String CharaktereName;
+    private String Herkunftsort;
     private List<Produkte> ausgelieheneProduktee;
 
-    public Charaktere(Integer CharaktereID, String CharaktereName) {
+    public Charaktere(Integer CharaktereID, String CharaktereName,String Herkunftsort) {
         this.CharaktereID = CharaktereID;
         this.CharaktereName = CharaktereName;
+        this.Herkunftsort = Herkunftsort;
         this.ausgelieheneProduktee = new ArrayList<>();
-        //this.ausgelieheneProduktee = ausgelieheneProduktee;
     }
     public Integer getCharaktereID() {
         return CharaktereID;
@@ -32,6 +33,12 @@ public class Charaktere implements HasID{
     }
     public void addProdukte(Produkte Produkte) {
         ausgelieheneProduktee.add(Produkte);
+    }
+    public String getHerkunftsort() {
+         return Herkunftsort;
+    }
+    public void setHerkunftsort() {
+        this.Herkunftsort = Herkunftsort;
     }
 
     @Override

@@ -1,16 +1,23 @@
 package model;
 
-public class Produkte {
+public class Produkte implements HasID {
+    private Integer id;
     private String name;
     private double price;
     private String Herkunftregion;
 
-    public Produkte(String name, double price, String Herkunftregion) {
+    public Produkte(Integer id,String name, double price, String Herkunftregion) {
+        this.id = id;
         this.name = name;
         this.price = price;
         this.Herkunftregion = Herkunftregion;
     }
-
+    public Integer getPacketId(){
+        return id;
+    }
+    public void setPacketId(Integer id){
+        this.id = id;
+    }
     public String getName() {
         return name;
     }
@@ -42,5 +49,10 @@ public class Produkte {
                 ", price=" + price +
                 ", Herkunftregion='" + Herkunftregion + '\'' +
                 '}';
+    }
+
+    @Override
+    public Integer getId() {
+        return id;
     }
 }
