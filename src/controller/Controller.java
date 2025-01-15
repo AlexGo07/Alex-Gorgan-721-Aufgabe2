@@ -16,14 +16,13 @@ public class Controller {
     /**
      * Constructs a Controller with the given Produkte and Client repositories.
      *
-     * @param ProdukteRepository   the repository for Produkte entities
+     * @param ProdukteRepository the repository for Produkte entities
      * @param CharaktereRepository the repository for Client entities
      */
     public Controller(IRepository<Produkte> ProdukteRepository, IRepository<Charaktere> CharaktereRepository) {
         this.ProdukteRepository = ProdukteRepository;
         this.CharaktereRepository = CharaktereRepository;
     }
-
     /**
      * Adds a Produkte entity to the repository.
      *
@@ -32,7 +31,6 @@ public class Controller {
     public void addProdukte(Produkte Produkte) {
         ProdukteRepository.create(Produkte);
     }
-
     /**
      * Updates an existing Produkte in the repository.
      *
@@ -41,7 +39,6 @@ public class Controller {
     public void updateProdukte(Produkte Produkte) {
         ProdukteRepository.update(Produkte);
     }
-
     /**
      * Deletes a Produkte entity from the repository.
      *
@@ -50,7 +47,6 @@ public class Controller {
     public void deleteProdukte(Integer id) {
         ProdukteRepository.delete(id);
     }
-
     /**
      * Retrieves all Produkte entities from the repository.
      *
@@ -79,7 +75,6 @@ public class Controller {
     public void addCharaktere(Charaktere Charaktere) {
         CharaktereRepository.create(Charaktere);
     }
-
     /**
      * Retrieves all Client entities from the repository.
      *
@@ -88,7 +83,6 @@ public class Controller {
     public List<Charaktere> getAllCharakteren() {
         return CharaktereRepository.readAll();
     }
-
     /**
      * Retrieves a Client entity by its ID.
      *
@@ -98,7 +92,6 @@ public class Controller {
     public Charaktere getCharaktereById(Integer id) {
         return CharaktereRepository.get(id);
     }
-
     /**
      * Updates an existing Client in the repository.
      *
@@ -107,7 +100,6 @@ public class Controller {
     public void updateCharaktere(Charaktere Charaktere) {
         CharaktereRepository.update(Charaktere);
     }
-
     /**
      * Deletes a Client entity from the repository.
      *
@@ -117,7 +109,7 @@ public class Controller {
         CharaktereRepository.delete(id);
     }
 
-    public Integer getMax1ID() {
+    public Integer getMax1ID(){
         int maxId = 0;
         for (Integer Id : ProdukteRepository.getKeys()) {
             if (Id.compareTo(maxId) > 0) {
@@ -127,7 +119,7 @@ public class Controller {
         return maxId;
     }
 
-    public Integer getMax2ID() {
+    public Integer getMax2ID(){
         int maxId = 0;
         for (Integer Id : CharaktereRepository.getKeys()) {
             if (Id.compareTo(maxId) > 0) {
@@ -135,6 +127,18 @@ public class Controller {
             }
         }
         return maxId;
+    }
+
+    /**
+     * Filters Produktes by genre.
+     *
+     *
+     * @return a list of Produktes matching the specified Herkunft
+     */
+    public List<Charaktere> getCharaktereNachHerkunft(String Herkunft) {
+        return CharaktereRepository.readAll().stream()
+                .filter(f -> f.getHerkunftsort().equalsIgnoreCase(Herkunft))
+                .collect(Collectors.toList());
     }
 
 }
