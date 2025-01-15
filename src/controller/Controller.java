@@ -155,5 +155,23 @@ public class Controller {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Filters a Client's Produktes by price and sorts them in ascending or descending order.
+     *
+     * @param CharaktereId   the ID of the Client
+     * @param aufsteigend  the sorting order: "asc" for ascending, "desc" for descending
+     * @return a sorted list of Produktes based on price
+     */
 
+    public List<Produkte> getProdukteeNachPreis(Integer CharaktereId, boolean aufsteigend) {
+        Charaktere Charaktere = CharaktereRepository.get(CharaktereId);
+        if (Charaktere == null) {
+            throw new IllegalArgumentException("Charaktere nicht gefunden.");
+        }
+        return Charaktere.getAusgelieheneProduktee().stream()
+                .sorted((f1, f2) -> aufsteigend ?
+                        Double.compare(f1.getPrice(), f2.getPrice()) :
+                        Double.compare(f2.getPrice(), f1.getPrice()))
+                .collect(Collectors.toList());
+    }
 }
