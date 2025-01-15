@@ -38,8 +38,8 @@ public class Produkte implements HasID {
         return Herkunftregion;
     }
 
-    public void Herkunftregion(String season) {
-        this.Herkunftregion = season;
+    public void setHerkunftregion(String herkunftregion) {
+        this.Herkunftregion = herkunftregion;
     }
 
     @Override

@@ -52,7 +52,7 @@ public class Controller {
      *
      * @return a list of all Produktes
      */
-    public List<Produkte> getAllProduktee() {
+    public List<Produkte> getAllProdukte() {
         return ProdukteRepository.readAll();
     }
 
@@ -150,7 +150,7 @@ public class Controller {
 
     public List<Charaktere> getCharakterenMitProdukteVonRegion(String region) {
         return CharaktereRepository.readAll().stream()
-                .filter(k -> k.getAusgelieheneProduktee().stream()
+                .filter(k -> k.getAusgelieheneProdukte().stream()
                         .anyMatch(f -> f.getHerkunftregion().equalsIgnoreCase(region)))
                 .collect(Collectors.toList());
     }
@@ -168,7 +168,7 @@ public class Controller {
         if (Charaktere == null) {
             throw new IllegalArgumentException("Charaktere nicht gefunden.");
         }
-        return Charaktere.getAusgelieheneProduktee().stream()
+        return Charaktere.getAusgelieheneProdukte().stream()
                 .sorted((f1, f2) -> aufsteigend ?
                         Double.compare(f1.getPrice(), f2.getPrice()) :
                         Double.compare(f2.getPrice(), f1.getPrice()))

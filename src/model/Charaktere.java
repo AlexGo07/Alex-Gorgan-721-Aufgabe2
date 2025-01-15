@@ -28,7 +28,7 @@ public class Charaktere implements HasID{
     public void setCharaktereName(String CharaktereName) {
         this.CharaktereName = CharaktereName;
     }
-    public List<Produkte> getAusgelieheneProduktee() {
+    public List<Produkte> getAusgelieheneProdukte() {
         return ausgelieheneProduktee;
     }
     public void addProdukte(Produkte Produkte) {
